@@ -32,8 +32,9 @@ class SessionsController extends Controller
             $fallback = route('users.show', Auth::user());
            return redirect()->intended($fallback);
        } else {
+            Auth::logout();
            session()->flash('danger', '很抱歉，您的邮箱和密码不匹配');
-           return redirect()->back()->withInput();
+           return redirect('/');
        }
     }
 
