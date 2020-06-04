@@ -20,6 +20,11 @@ class User extends Authenticatable
     protected $table = 'users';
 
 
+    public function statuses()
+    {
+        return $this->hasMany(Status::class);
+    }
+
     protected $fillable = [
         'name', 'email', 'password',
     ];
