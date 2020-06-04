@@ -55,13 +55,19 @@ class User extends Authenticatable
     }
 
 
-public static function boot()
+    public static function boot()
     {
         parent::boot();
 
         static::creating(function ($user) {
             $user->activation_token = Str::random(10);
         });
+    }
+
+        public function feed()
+    {
+        return $this->statuses()
+                    ->orderBy('created_at', 'desc');
     }
 
 }
